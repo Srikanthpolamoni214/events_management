@@ -1,5 +1,7 @@
 let searchInput = document.getElementById("searchInputs");
 let suggestionbox = document.getElementById("suggestionbox");
+let placecd = document.getElementById("placecd");
+
 
 searchInput.addEventListener("keypress", function (event) {
   if (event.key == "Enter") {
@@ -11,7 +13,6 @@ searchInput.addEventListener("keypress", function (event) {
 
 // searchInput.addEventListener("input",results)
 
-let placecd = document.getElementById("placecd");
 
 async function results() {
   let data = await fetch("https://faux-api.com/api/v1/events_2862747661137939");
@@ -29,26 +30,62 @@ function displaycd(cd) {
   if (cd.length == 0) {
     placecd.innerHTML = `<div style="text-align: center; margin: 30px ;"><h1 >Error:</h1>//search results not found <br> try again</div>`;
   }
-  cd.forEach((element) => {
+  cd.forEach((element,index) => {
     let div = document.createElement("div");
 
     div.classList.add("searchcd");
-    placecd.appendChild(div);
+    
     let name = document.createElement("h3");
     name.innerHTML = element.By;
+    name.style.height="50px"
+    name.style.textAlign="center"
+    name.style.color="black"
+    
 
     let photo = document.createElement("img");
     photo.setAttribute("src", element.photo);
-    photo.style.height = "250px";
-    photo.style.width = "310px";
+    
+    photo.classList.add("photo")
 
+    let desdiv = document.createElement("div");
+    desdiv.classList.add("desdiv")
     let des = document.createElement("p");
     des.innerHTML = element.description;
-    div.append(name, photo, des);
+
+    desdiv.append(des)
+
+    let contact = document.createElement("div")
+    contact.style.backgroundColor="green";
+    contact.style.padding="12px"
+    // <span class="shake"></span>
+let para = document.createElement("P");
+para.innerHTML=element.contact
+para.style.display="inline";
+para.style.color="white"
+para.style.marginLeft="12px"
+let span =document.createElement("span")
+span.innerHTML=  `<i  style="font-size:20px;color:white;display:inline-block;" class="fa">&#xf095;</i>`
+span.classList.add("shake-phone");
+
+contact.append(span,para)
+
+    div.append(name, photo, desdiv);
+    // if(index==2||index==5){
+    //   div.remove(contact)
+    // }
+    if (element.contact) {
+      div.append(contact);
+  }
+    
     placecd.append(div);
+    
   });
+ 
 }
 
+
+
+// when focus on searchInput
 searchInput.addEventListener("focus", async function filterSuggestions() {
   let data = await fetch("https://faux-api.com/api/v1/events_2862747661137939");
   let json = await data.json();

@@ -16,6 +16,7 @@ input {
 #placecd{
     background-color: orangered;
     
+    padding: 30px;
 }
 .flex {
     display: flex;
@@ -24,17 +25,23 @@ input {
     flex-wrap: wrap;
   }
 .searchcd{
-    height: 500px;
+    height: 550px;
     width: 350px;
     text-align: center;
     margin: 15px;
     background-color :white;
-    padding :25px;
-    overflow: hidden;
-    overflow-y: scroll;
+    padding :15px;
+   
     border-radius: 12px;
     box-shadow: 2px 4px 12px 4px gold;
     
+}
+
+.searchcd:hover{
+    height: 610px;
+    box-shadow: 2px 2px 12px 4px blue ;
+    margin-top: -2px;
+    background-color: gold;
 }
 .homebtn{
     padding: 12px;
@@ -75,3 +82,63 @@ button{
   
     background-color: gainsboro;
   }
+
+
+  .desdiv{
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 12px;
+    overflow-y: scroll;
+    background-color: lightpink;
+    box-shadow: 2px 3px 12px ;
+  }
+
+  .photo{
+    height :250px;
+    width :310px;
+    box-shadow: 2px 3px 12px 2px;
+  }
+/* 
+  .shake {
+
+    animation: shake 0.5s ease-in-out infinite;
+  
+  }
+  
+  
+  
+  @keyframes shake {
+  
+    0% { transform: translateX(0); }
+  
+    25% { transform: translateX(5px); }
+  
+    50% { transform: translateX(-5px); }
+  
+    75% { transform: translateX(5px); }
+  
+    100% { transform: translateX(0); }
+  
+  } */
+  .shake-phone {
+
+  animation: shake 0.5s ease-in-out infinite;
+
+}
+
+
+
+@keyframes shake {
+
+  0% { transform: translateX(0); }
+
+  25% { transform: translateX(5px); }
+
+  50% { transform: translateX(-5px); }
+
+  75% { transform: translateX(2.5px); }
+
+  100% { transform: translateX(0); }
+
+}
