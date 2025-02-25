@@ -52,12 +52,14 @@ function displaycd(cd) {
     let des = document.createElement("p");
     des.innerHTML = element.description;
     des.style.fontSize="14px"
+    
 
     desdiv.append(des)
 
     let contact = document.createElement("div")
     contact.style.backgroundColor="green";
     contact.style.padding="12px"
+    contact.style.borderRadius="12px"
     // <span class="shake"></span>
 let para = document.createElement("p");
 para.innerHTML=element.contact
@@ -65,7 +67,7 @@ para.style.display="inline";
 para.style.color="white"
 para.style.marginLeft="12px"
 let span =document.createElement("span")
-span.innerHTML=  `<i  style="font-size:20px;color:white;display:inline-block;" class="fa">&#xf095;</i>`
+span.innerHTML=  `<i   style="font-size:25px;color:white;display:inline-block;" class="fa">&#xf095;</i>`
 span.classList.add("shake-phone");
 
 contact.append(span,para)
