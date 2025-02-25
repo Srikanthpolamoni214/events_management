@@ -35,9 +35,9 @@ function displaycd(cd) {
 
     div.classList.add("searchcd");
     
-    let name = document.createElement("h3");
+    let name = document.createElement("h4");
     name.innerHTML = element.By;
-    name.style.height="50px"
+    name.style.height="40px"
     name.style.textAlign="center"
     name.style.color="black"
     
@@ -51,6 +51,7 @@ function displaycd(cd) {
     desdiv.classList.add("desdiv")
     let des = document.createElement("p");
     des.innerHTML = element.description;
+    des.style.fontSize="14px"
 
     desdiv.append(des)
 
@@ -58,7 +59,7 @@ function displaycd(cd) {
     contact.style.backgroundColor="green";
     contact.style.padding="12px"
     // <span class="shake"></span>
-let para = document.createElement("P");
+let para = document.createElement("p");
 para.innerHTML=element.contact
 para.style.display="inline";
 para.style.color="white"
