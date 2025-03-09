@@ -32,7 +32,7 @@ label {
   padding: 12px;
 
   border-radius: 12px;
-  box-shadow: 2px 4px 12px 4px gold;
+  box-shadow: 2px 4px 12px  gold;
 }
 
 .searchcd:hover {
