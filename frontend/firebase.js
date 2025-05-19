@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -24,4 +25,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword };
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword , sendPasswordResetEmail };

@@ -21,14 +21,20 @@
                 <input id="mail" type="email" placeholder="Email Address" required> <br>
                 <label for="pswrd">Password :</label>
                 <input id="pswrd" type="password" placeholder="Password" required> <br>
-                
+                            <label for="role" class="form-label">Role:</label>
+        <select id="role" name="role" class="form-select" required>
+          <option value="Organizer">Organizer</option>
+          <option value="User">User</option>
+        </select>
+
                 <input id="signup" type="submit" value="Sign Up" required>
             </form>
             <a style="margin-top: 12px;display: inline-block;" href="./login.html">Already have an account/ Login</a>
 <a href="./home.html">            <button id="guestuser"> Guest-user</button>
 </a>
         </div>
-    
+    <div id="toast" class="toast"></div>
+
 </body>
 
 </html>

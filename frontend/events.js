@@ -15,7 +15,7 @@ searchInput.addEventListener("keypress", function (event) {
 
 
 async function results() {
-  let data = await fetch("https://faux-api.com/api/v1/events_2862747661137939");
+  let data = await fetch("https://faux-api.com/api/v1/eventmanagement_7344254602474231");
   let json = await data.json();
   let op = json.result;
   let srchvalue = searchInput.value.trim().toLowerCase();
