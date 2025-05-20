@@ -275,7 +275,7 @@ if (event_1) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("http://localhost:3000/events") // your backend endpoint
+  fetch("https://events-management-voe0.onrender.com/events") // your backend endpoint
     .then(response => response.json())
     .then(data => {
       const cardDataContainer = document.getElementById("card-data");
@@ -291,7 +291,7 @@ console.log(data)
     imgWrapper.style.marginTop="-50px"
     let img = document.createElement("img");
     img.style.height="250px"
-    img.src = `http://localhost:3000${item.photo}`;
+    img.src = `https://events-management-voe0.onrender.com${item.photo}`;
     img.alt = "Card Image";
     imgWrapper.appendChild(img);
     let cardBody = document.createElement("div");

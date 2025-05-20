@@ -500,7 +500,7 @@ function renderPagination(totalEvents) {
     loader.style.display = "block";
 
     try {
-      const res = await fetch("http://localhost:3000/events");
+      const res = await fetch("https://events-management-voe0.onrender.com/events");
       const data = await res.json();
       allEvents = data;
       displayEvents(allEvents);
@@ -625,7 +625,7 @@ bookEvent.addEventListener("submit", async(e) => {
     
     // Send the data to the server
     try{
-    let res = await fetch("http://localhost:3000/bookevent", {
+    let res = await fetch("https://events-management-voe0.onrender.com/bookevent", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

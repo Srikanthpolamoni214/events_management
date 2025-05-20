@@ -1,8 +1,6 @@
 // // const http= require("http");
 // // const fs = require("fs").promises;
 
-
-
 // // const server= http.createServer((req, res) => {
 // //         // CORS Headers for every request
 // //     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -10,7 +8,7 @@
 // //     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
 // //     // Handle preflight OPTIONS
-    
+
 // //     if (req.method === "OPTIONS") {
 // //         res.writeHead(204); // No content
 // //         return res.end();
@@ -25,11 +23,10 @@
 
 // //             // Parse the JSON data
 // //             const pareddata = JSON.parse(body);
-            
+
 // //     const existing = await fs.readFile("data.json", "utf-8");
 // //             const existingData = JSON.parse(existing);
 // //             existingData.push(pareddata);
-
 
 // //           await  fs.writeFile("data.json", JSON.stringify(existingData) );
 // //             console.log(body);
@@ -45,7 +42,7 @@
 // //         console.log(`http://localhost:3000`);
 // //     }
 // // );
-   
+
 // //chatgpt
 //  const http = require("http");
 // const fs = require("fs").promises;
@@ -53,7 +50,7 @@
 // const server = http.createServer((req, res) => {
 //   // Set CORS headers
 //   res.setHeader("Access-Control-Allow-Origin", "*");
-  
+
 //   res.setHeader("Access-Control-Allow-Methods", "OPTIONS, POST, GET");
 //   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -66,22 +63,17 @@
 //   // Handle GET request
 //   if (req.method === "GET") {
 
-  
-    
 //     async function readData() {
 //  const data = await  fs.readFile("data.json", "utf-8");
 //    res.writeHead(200, { "Content-Type": "application/json" });
-   
+
 //    res.end(JSON.stringify({ data: JSON.parse(data) }));
 //     // Read existing data
 
 //     }
 //     readData();
-  
+
 // }
-
-
-
 
 //   // Handle POST request
 //   if (req.method === "POST") {
@@ -128,12 +120,9 @@
 //   console.log("Server is running on http://localhost:3000");
 // });
 
-
-
 // const http = require("http");
 // const fsSync = require("fs").promises;
 // const fs = require("fs");
-
 
 // const formidable = require("formidable");
 // const path = require("path");
@@ -196,8 +185,6 @@
 //     return; // Important: prevent fall-through
 //   }
 
-
-
 //   // Handle POST request
 //   if (req.method === "POST"&& req.url === "/") {
 //     let body = "";
@@ -233,8 +220,6 @@
 //     return; // Important: prevent fall-through
 //   }
 
-
-
 //   // Handle file upload
 //   //post event
 //   const cleanUrl = req.url.split("?")[0].replace(/\/+$/, "");
@@ -250,7 +235,7 @@
 //       res.end(JSON.stringify({ error: "Internal Server Error" }));
 //       } else {
 //         try {
-          
+
 //             // const uploadedFile = files[0];
 //                 const file = files.file || files.photo; // change this to your actual input field name
 
@@ -268,7 +253,7 @@
 //             res.end(JSON.stringify({ error: "Invalid file type" }));
 //             return;
 //           }
-          
+
 //           const filename = file.originalFilename;
 //           console.log('Files received:', file);
 
@@ -287,7 +272,7 @@
 //             name: fields.name,
 //             phone: fields.phone,
 //             photo: `http://localhost:3000/uploads/${uniqueName}`,
-//           };            
+//           };
 //           let existingData = [];
 //           try {
 //             const fileData = await fsSync.readFile("./events.json", "utf-8");
@@ -311,11 +296,6 @@
 //   return; // Important: prevent fall-through
 // }
 
-
-
-
-
-
 // //get event
 // if (cleanUrl === "/events" && req.method === "GET") {
 //   try {
@@ -331,7 +311,6 @@
 //   }
 //   return; // Important: prevent fall-through
 // }
-
 
 // if(cleanUrl === "/bookevent" && req.method === "POST"){
 //   let body = "";
@@ -372,15 +351,9 @@
 //   res.end(JSON.stringify({ error: "Method Not Allowed" }));
 // });
 
-
-
 // server.listen(3000, () => {
 //   console.log("Server is running on http://localhost:3000");
 // });
-
-
-
-
 
 // const http = require("http");
 // const fsSync = require("fs").promises;
@@ -580,22 +553,12 @@
 //   console.log(`✅ Server is running at http://localhost:${PORT}`);
 // });
 
-
-
-
-
-
-
-
-
-
 // const http = require("http");
 // const fs = require("fs");
 // const fsp = require("fs").promises;
 // const path = require("path");
 // const url = require("url");
 // const formidable = require("formidable");
-
 
 // const UPLOAD_DIR = path.join(__dirname, "uploads");
 // const EVENTS_FILE = "./events.json";
@@ -730,7 +693,6 @@
 // const newPath = path.join(UPLOAD_DIR, filename);
 // await fsp.rename(uploadedFile.filepath, newPath);
 
-
 //       const newEvent = {
 //         name: fields.name,
 //         description: fields.description,
@@ -775,103 +737,77 @@
 //   console.log("Server is running on http://localhost:3000");
 // });
 
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
+const formidable = require("formidable");
+const cors = require("cors");
 
-
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const formidable = require('formidable');
-const cors = require('cors');
-
+const bcrypt = require("bcrypt");
 const app = express();
 const PORT = 3000;
+app.use(express.json());
 
-const EVENTS_FILE = path.join(__dirname, 'events.json');
-const UPLOAD_DIR = path.join(__dirname, 'uploads');
+
+const EVENTS_FILE = path.join(__dirname, "events.json");
+const UPLOAD_DIR = path.join(__dirname, "uploads");
+const BOOKINGS_FILE = path.join(__dirname, "bookings.json");
+const data_FILE = path.join(__dirname, "data.json");
 
 // Ensure uploads and JSON file exist
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR);
-if (!fs.existsSync(EVENTS_FILE)) fs.writeFileSync(EVENTS_FILE, '[]');
+if (!fs.existsSync(EVENTS_FILE)) fs.writeFileSync(EVENTS_FILE, "[]");
 
 // Middleware
 app.use(cors());
-app.use('/uploads', express.static(UPLOAD_DIR));
+app.use("/uploads", express.static(UPLOAD_DIR));
 
 // Helper to read/write events
 const readEvents = () => JSON.parse(fs.readFileSync(EVENTS_FILE));
-const writeEvents = (events) => fs.writeFileSync(EVENTS_FILE, JSON.stringify(events, null, 2));
-
+const writeEvents = (events) =>
+  fs.writeFileSync(EVENTS_FILE, JSON.stringify(events, null, 2));
+const readRegister = () => JSON.parse(fs.readFileSync(data_FILE));
+const writeRegister = (register) =>
+  fs.writeFileSync(data_FILE, JSON.stringify(register, null, 2));
 // GET all events
-app.get('/events', (req, res) => {
+app.get("/events", (req, res) => {
   const events = readEvents();
   res.json(events);
 });
 
-// POST create new event
-// app.post('/events', (req, res) => {
-//   const form =new  formidable.IncomingForm({ multiples: false, uploadDir: UPLOAD_DIR, keepExtensions: true });
-
-//   form.parse(req, (err, fields, files) => {
-//     if (err) return res.status(500).json({ error: 'Form parse error' });
-
-//     const { oraganizer, description, location, date, time, phone } = fields;
-//     // const imageFile = photo?.[0] || files.photo;
-// const imageFile = fields.photo || files.file; // change this to your actual input field name
-//        const imgfile= files.photo.filepath
-// const newEvent = {
-//       id: Date.now().toString(),
-//       oraganizer,
-//       description,
-//       location,
-//       date,
-//       time,
-//       phone,
-//       image: imageFile ? `/uploads/${path.basename(imgfile)}` : '',
-//       status: 'Scheduled',
-//     };
-
-//     const events = readEvents();
-//     events.push(newEvent);
-//     writeEvents(events);
-
-//     res.status(201).json(newEvent);
-//   });
-// });
-// app.post('/events', (req, res) => {
-//   const form = new formidable.IncomingForm({
-//     multiples: false,
-//     uploadDir: UPLOAD_DIR,
-//     keepExtensions: true,
-//   });
-
-app.post('/events', (req, res) => {
-  const form =new  formidable.IncomingForm({ multiples: false, uploadDir: UPLOAD_DIR, keepExtensions: true });
+app.post("/events", (req, res) => {
+  const form = new formidable.IncomingForm({
+    multiples: false,
+    uploadDir: UPLOAD_DIR,
+    keepExtensions: true,
+  });
 
   form.parse(req, (err, fields, files) => {
-    if (err) return res.status(500).json({ error: 'Form parse error' });
+    if (err) return res.status(500).json({ error: "Form parse error" });
 
-    const { organizer, description, location, date, time, phone,status } = fields;
+    const { organizer, description, location, date, time, phone, status } =
+      fields;
     // const imageFile = photo?.[0] || files.photo;
-// const imageFile = fields.photo || files.file; // change this to your actual input field name
-   
-const file= files.photo
+    // const imageFile = fields.photo || files.file; // change this to your actual input field name
 
-      const imageUrl = `/uploads/${path.basename(file.filepath)}`;
+    const file = files.photo;
 
-     console.log('Files received:', fields);
-    
-      const newEvent = {
-    id: Date.now().toString(),
-          organizer: organizer?.[0]|| "",
+    const imageUrl = `/uploads/${path.basename(file.filepath)}`;
 
-    description: description?.[0] || "",
-    location: location?.[0] || "",
-    date: date?.[0] || "",
-    time: time?.[0] || "",
-    phone: phone?.[0] || "",
-    photo: file ? imageUrl : '',
-    status: status?.[0]|| "",
-  };
+    console.log("Files received:", fields);
+
+    const newEvent = {
+      id: Date.now().toString(),
+      organizer: organizer?.[0] || "",
+
+      description: description?.[0] || "",
+      location: location?.[0] || "",
+      date: date?.[0] || "",
+      time: time?.[0] || "",
+      phone: phone?.[0] || "",
+      photo: file ? imageUrl : "",
+      status: status?.[0] || "",
+    };
 
     const events = readEvents();
     events.push(newEvent);
@@ -879,168 +815,94 @@ const file= files.photo
 
     res.status(201).json(newEvent);
   });
-//  form.parse(req, (err, fields, files) => {
-//     if (err) return res.status(500).json({ error: 'Form parse error' });
-
-//     const { oraganizer, description, location, date, time, phone } = fields;
-//     const uploadedFile = files.photo; // ensure your input field name is 'photo'
-
-//     const newEvent = {
-//       id: Date.now().toString(),
-//       oraganizer,
-//       description,
-//       location,
-//       date,
-//       time,
-//       phone,
-//       image: uploadedFile && uploadedFile.filepath
-//         ? `/uploads/${path.basename(uploadedFile.filepath)}`
-//         : '',
-//       status: 'Scheduled',
-//     };
-
-//     const events = readEvents();
-//     events.push(newEvent);
-//     writeEvents(events);
-
-//     res.status(201).json(newEvent);
-//   });
 });
-
- 
-
-// form.parse(req, (err, fields, files) => {
-//   if (err) return res.status(500).json({ error: 'Form parse error' });
-
-//   console.log('FIELDS:', fields);
-//   console.log('FILES:', files);
-
-//   const getField = (field) => Array.isArray(field) ? field[0] : field;
-
-//   const newEvent = {
-//     id: Date.now().toString(),
-//     oraganizer: getField(fields.oraganizer),
-//     description: getField(fields.description),
-//     location: getField(fields.location),
-//     date: getField(fields.date),
-//     time: getField(fields.time),
-//     phone: getField(fields.phone),
-//     image: files.photo && files.photo.filepath
-//       ? `/uploads/${path.basename(files.photo.filepath)}`
-//       : '',
-//     status: 'Scheduled',
-//   };
-
-//   const events = readEvents();
-//   events.push(newEvent);
-//   writeEvents(events);
-
-//   res.status(201).json(newEvent);
-// });
-
-
-
 
 // DELETE event by ID
 
-app.put("/events/:id",(req,res)=>{
+app.put("/events/:id", (req, res) => {
   const id = req.params.id;
   const events = readEvents();
-  const index = events.findIndex((event) =>
-    event.id === id
-  );
+  const index = events.findIndex((event) => event.id === id);
   if (index === -1) {
-    res.status(404).json({ error: 'Event not found' });
-    console.log("955 event not found")
-    } 
-    const event = events[index];
-    console.log(event)
+    res.status(404).json({ error: "Event not found" });
+    console.log("955 event not found");
+  }
+  const event = events[index];
+  console.log(event);
 
-    
-
-    
-  const form =new  formidable.IncomingForm({ multiples: false, uploadDir: UPLOAD_DIR, keepExtensions: true });
+  const form = new formidable.IncomingForm({
+    multiples: false,
+    uploadDir: UPLOAD_DIR,
+    keepExtensions: true,
+  });
 
   form.parse(req, (err, fields, files) => {
-    if (err) return res.status(500).json({ error: 'Form parse error' });
+    if (err) return res.status(500).json({ error: "Form parse error" });
 
-    const { organizer, description, location, date, time, phone,status } = fields;
+    const { organizer, description, location, date, time, phone, status } =
+      fields;
     // const imageFile = photo?.[0] || files.photo;
-// const imageFile = fields.photo || files.file; // change this to your actual input field name
-   
-event.organizer=organizer
-event.description=description
-event.location=location
-event.date=date
-event.time=time
-event.phone=phone
-event.status=status
+    // const imageFile = fields.photo || files.file; // change this to your actual input field name
 
-const file= files.photo
+    event.organizer = organizer;
+    event.description = description;
+    event.location = location;
+    event.date = date;
+    event.time = time;
+    event.phone = phone;
+    event.status = status;
 
-      const imageUrl = `/uploads/${path.basename(file.filepath)}`;
+    const file = files.photo;
 
-     console.log('Files received:', fields);
-    
-      const newEvent = {
-    id: Date.now().toString(),
-          organizer: organizer?.[0]|| "",
+    const imageUrl = `/uploads/${path.basename(file.filepath)}`;
 
-    description: description?.[0] || "",
-    location: location?.[0] || "",
-    date: date?.[0] || "",
-    time: time?.[0] || "",
-    phone: phone?.[0] || "",
-    photo: file ? imageUrl : '',
-    status: status?.[0]|| "",
-  };
+    console.log("Files received:", fields);
+
+    const newEvent = {
+      id: Date.now().toString(),
+      organizer: organizer?.[0] || "",
+
+      description: description?.[0] || "",
+      location: location?.[0] || "",
+      date: date?.[0] || "",
+      time: time?.[0] || "",
+      phone: phone?.[0] || "",
+      photo: file ? imageUrl : "",
+      status: status?.[0] || "",
+    };
 
     const events = readEvents();
     events.push(newEvent);
     writeEvents(events);
 
-    res.status(201).json({"message":"updated successfully"});
+    res.status(201).json({ message: "updated successfully" });
   });
-//  form.parse(req, (err, fields, files) => {
-//     if (err) return res.status(500).json({ error: 'Form parse error' });
+});
 
-//     const { oraganizer, description, location, date, time, phone } = fields;
-//     const uploadedFile = files.photo; // ensure your input field name is 'photo'
-
-//     const newEvent = {
-//       id: Date.now().toString(),
-//       oraganizer,
-//       description,
-//       location,
-//       date,
-//       time,
-//       phone,
-//       image: uploadedFile && uploadedFile.filepath
-//         ? `/uploads/${path.basename(uploadedFile.filepath)}`
-//         : '',
-//       status: 'Scheduled',
-//     };
-
-//     const events = readEvents();
-//     events.push(newEvent);
-//     writeEvents(events);
-
-//     res.status(201).json(newEvent);
-//   });
-}
-
-);
-
-app.delete('/api/events/:id', (req, res) => {
+app.delete("/api/events/:id", (req, res) => {
   const events = readEvents();
-  const updatedEvents = events.filter(event => event.id !== req.params.id);
+  const updatedEvents = events.filter((event) => event.id !== req.params.id);
 
   if (events.length === updatedEvents.length) {
-    return res.status(404).json({ error: 'Event not found' });
+    return res.status(404).json({ error: "Event not found" });
   }
 
   writeEvents(updatedEvents);
-  res.json({ message: 'Event deleted' });
+  res.json({ message: "Event deleted" });
+});
+
+app.post("/register", (req, res) => {
+  const { name, email, password,role } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
+  const user = { name, email, password: hashedPassword,role };
+  const users = readRegister();
+  users.push(user);
+  writeRegister(users);
+  console.log(user)
+  res.json({ message: "User created Account as a " + role });
+
+
 });
 
 // Start server

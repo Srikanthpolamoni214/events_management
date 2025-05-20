@@ -91,7 +91,7 @@ signUp.addEventListener("submit", function (e) {
     .then((x) => {
       if (x.user) {
         // Store extra user data in backend
-        return fetch("http://localhost:3000/", {
+        return fetch("https://events-management-voe0.onrender.com/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -106,14 +106,20 @@ signUp.addEventListener("submit", function (e) {
       }
     })
     .then((response) => {
+      if (response.ok) {
+        console.log("User created");
+        }
+
       if (!response.ok) {
         throw new Error("Backend response not OK");
       }
       return response.json();
+      console.log(response.json())
     })
     .then((data) => {
-      if (data.message === "Data received") {
-        alert("Account created successfully");
+      console.log(data)
+      if (data.message ) {
+        alert(data.message);
         login();
       } else {
         alert("Account already exists in backend");
