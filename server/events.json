@@ -1,19 +1,19 @@
 [
   {
     "id": "1747602199199",
-    "organizer": "Manikanta Events",
+    "organizer": "Manikanta Eventsss",
     "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
     "location": "Hyderabad",
     "date": "2025-05-02",
     "time": "02:33",
     "phone": "6521584521",
     "photo": "/uploads/vhdd6oh4nc3nn7nih9rs9a1p1.jpg",
-    "status": "Pending"
+    "status": "Approved"
   },
   {
     "id": "1747603197476",
     "organizer": "Sri Venkata Events",
-"description": "Munch On- Food Festival\nMunch On- Food Festival @Gachibowli\n\n🍔🎶 Flavors & Fest - The Ultimate Food Festival & Flea Market! 🎡🎸\n\nGet ready for a 3-day extravaganza of delicious food shopping and live music! 🌟🎤\n\n📅 Dates: May 30th 31st & 1st June 2025\n\n⏰ Time: 4 PM to 11 AM\n\n📍 Venue: Samana College of Design Studies MANUU Campus\n\n✅ Mouthwatering street food & gourmet delights 🍕🍔\n\n✅ Trendy flea market with unique finds 🛍️\n\n✅ Live band performances to set the vibe 🎶💃\n\n✅ Fun activities & entertainment for all ages 🎡🎭",
+    "description": "Munch On- Food Festival\nMunch On- Food Festival @Gachibowli\n\n🍔🎶 Flavors & Fest - The Ultimate Food Festival & Flea Market! 🎡🎸\n\nGet ready for a 3-day extravaganza of delicious food shopping and live music! 🌟🎤\n\n📅 Dates: May 30th 31st & 1st June 2025\n\n⏰ Time: 4 PM to 11 AM\n\n📍 Venue: Samana College of Design Studies MANUU Campus\n\n✅ Mouthwatering street food & gourmet delights 🍕🍔\n\n✅ Trendy flea market with unique finds 🛍️\n\n✅ Live band performances to set the vibe 🎶💃\n\n✅ Fun activities & entertainment for all ages 🎡🎭",
     "location": "Mumbai",
     "date": "2025-05-12",
     "time": "14:49",
@@ -53,8 +53,7 @@
     "phone": "8744879945",
     "photo": "/uploads/hmrr0797j8ephle2sw13r097z.png",
     "status": "Approved"
-  }
-  ,
+  },
   {
     "id": "1747603954387",
     "organizer": "Vibez - Music Festival",
@@ -66,7 +65,6 @@
     "photo": "/uploads/hmrr0797j8ephle2sw13r097z.png",
     "status": "Approved"
   },
-  
   {
     "id": "1747603954387",
     "organizer": "Vibez - Music Festival",
@@ -77,7 +75,126 @@
     "phone": "8744879945",
     "photo": "/uploads/hmrr0797j8ephle2sw13r097z.png",
     "status": "Approved"
+  },
+  {
+    "id": "1747760828159",
+    "organizer": "dsf",
+    "description": "fds",
+    "location": "dsf",
+    "date": "2025-05-30",
+    "time": "22:41",
+    "phone": "26868686",
+    "photo": "",
+    "status": "Pending"
+  },
+  {
+    "id": "1747760868984",
+    "organizer": "5353",
+    "description": "fggf",
+    "location": "gfd",
+    "date": "2025-05-30",
+    "time": "14:37",
+    "phone": "533",
+    "photo": "",
+    "status": "Pending"
+  },
+  {
+    "id": "1747761080291",
+    "organizer": "59999",
+    "description": "99",
+    "location": "6",
+    "date": "2025-05-31",
+    "time": "22:43",
+    "phone": "6541614",
+    "photo": "",
+    "status": "Pending"
+  },
+  {
+    "id": "1747761123512",
+    "organizer": "5353kkk",
+    "description": "fggfkk",
+    "location": "gfd",
+    "date": "2025-05-30",
+    "time": "14:37",
+    "phone": "533",
+    "photo": "",
+    "status": "Pending"
+  },
+  {
+    "id": "1747761149901",
+    "organizer": "Manikanta Events",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Pending"
+  },
+  {
+    "id": "1747761166079",
+    "organizer": "Manikanta Events",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Cancelled"
+  },
+  {
+    "id": "1747761187305",
+    "organizer": "Manikanta Eventss",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Pending"
+  },
+  {
+    "id": "1747761481441",
+    "organizer": "Manikanta Events",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Approved"
+  },
+  {
+    "id": "1747761579041",
+    "organizer": "Manikanta Events",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Approved"
+  },
+  {
+    "id": "1747762099873",
+    "organizer": "Manikanta Events",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Approved"
+  },
+  {
+    "id": "1747762126361",
+    "organizer": "Manikanta Events",
+    "description": "A complete solution for wedding events and decoration.\r\nIbrahimpatnam,HYD.",
+    "location": "Hyderabad",
+    "date": "2025-05-02",
+    "time": "02:33",
+    "phone": "6521584521",
+    "photo": "",
+    "status": "Approved"
   }
-
-
 ]

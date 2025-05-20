@@ -792,7 +792,10 @@ app.post("/events", (req, res) => {
 
     const file = files.photo;
 
-    const imageUrl = `/uploads/${path.basename(file.filepath)}`;
+  let imageUrl = "";
+    if (file && file.filepath) {
+      imageUrl = `/uploads/${path.basename(file.filepath)}`;
+    }
 
     console.log("Files received:", fields);
 
@@ -823,12 +826,10 @@ app.put("/events/:id", (req, res) => {
   const id = req.params.id;
   const events = readEvents();
   const index = events.findIndex((event) => event.id === id);
+
   if (index === -1) {
-    res.status(404).json({ error: "Event not found" });
-    console.log("955 event not found");
+    return res.status(404).json({ error: "Event not found" });
   }
-  const event = events[index];
-  console.log(event);
 
   const form = new formidable.IncomingForm({
     multiples: false,
@@ -839,45 +840,30 @@ app.put("/events/:id", (req, res) => {
   form.parse(req, (err, fields, files) => {
     if (err) return res.status(500).json({ error: "Form parse error" });
 
-    const { organizer, description, location, date, time, phone, status } =
-      fields;
-    // const imageFile = photo?.[0] || files.photo;
-    // const imageFile = fields.photo || files.file; // change this to your actual input field name
-
-    event.organizer = organizer;
-    event.description = description;
-    event.location = location;
-    event.date = date;
-    event.time = time;
-    event.phone = phone;
-    event.status = status;
-
+    const { organizer, description, location, date, time, phone, status } = fields;
     const file = files.photo;
 
-    const imageUrl = `/uploads/${path.basename(file.filepath)}`;
+    const event = events[index];
+    event.organizer = organizer?.[0] || event.organizer;
+    event.description = description?.[0] || event.description;
+    event.location = location?.[0] || event.location;
+    event.date = date?.[0] || event.date;
+    event.time = time?.[0] || event.time;
+    event.phone = phone?.[0] || event.phone;
+    event.status = status?.[0] || event.status;
 
-    console.log("Files received:", fields);
+    if (file && file.filepath) {
+      event.photo = `/uploads/${path.basename(file.filepath)}`;
+    }
+events[index]=event
 
-    const newEvent = {
-      id: Date.now().toString(),
-      organizer: organizer?.[0] || "",
 
-      description: description?.[0] || "",
-      location: location?.[0] || "",
-      date: date?.[0] || "",
-      time: time?.[0] || "",
-      phone: phone?.[0] || "",
-      photo: file ? imageUrl : "",
-      status: status?.[0] || "",
-    };
-
-    const events = readEvents();
-    events.push(newEvent);
     writeEvents(events);
 
-    res.status(201).json({ message: "updated successfully" });
+    res.status(200).json({ message: "Event updated successfully", event });
   });
 });
+
 
 app.delete("/api/events/:id", (req, res) => {
   const events = readEvents();

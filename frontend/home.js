@@ -291,7 +291,7 @@ console.log(data)
     imgWrapper.style.marginTop="-50px"
     let img = document.createElement("img");
     img.style.height="250px"
-    img.src = `https://events-management-voe0.onrender.com${item.photo}`;
+    img.src = `https://events-management-voe0.onrender.com/events${item.photo}`;
     img.alt = "Card Image";
     imgWrapper.appendChild(img);
     let cardBody = document.createElement("div");
