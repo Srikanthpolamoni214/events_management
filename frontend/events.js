@@ -1,3 +1,4 @@
+
 let searchInput = document.getElementById("searchInputs");
 let suggestionbox = document.getElementById("suggestionbox");
 let placecd = document.getElementById("placecd");
@@ -15,14 +16,15 @@ searchInput.addEventListener("keypress", function (event) {
 
 
 async function results() {
-  let data = await fetch("https://faux-api.com/api/v1/eventmanagement_7344254602474231");
+  let data = await fetch("http://localhost:3000/events");
   let json = await data.json();
-  let op = json.result;
+  console.log(json)
+  let op = json;
   let srchvalue = searchInput.value.trim().toLowerCase();
   placecd.classList.add("flex");
 
   placecd.innerHTML = " ";
-  displaycd(op.filter((item) => item.By.toLowerCase().includes(srchvalue)));
+  displaycd(op.filter((item) => item.organizer.toLowerCase().includes(srchvalue)));
 }
 
 function displaycd(cd) {
@@ -36,14 +38,15 @@ function displaycd(cd) {
     div.classList.add("searchcd");
     
     let name = document.createElement("h4");
-    name.innerHTML = element.By;
+    name.innerHTML = element.organizer;
     name.style.height="40px"
     name.style.textAlign="center"
     name.style.color="black"
     
 
     let photo = document.createElement("img");
-    photo.setAttribute("src", element.photo);
+    photo.setAttribute("src", `http://localhost:3000${element.photo}`);
+    console.log(element.photo)
     
     photo.classList.add("photo")
 
@@ -62,7 +65,7 @@ function displaycd(cd) {
     contact.style.borderRadius="12px"
     // <span class="shake"></span>
 let para = document.createElement("p");
-para.innerHTML=element.contact
+para.innerHTML=element.phone
 para.style.display="inline";
 para.style.color="white"
 para.style.marginLeft="12px"
@@ -76,7 +79,7 @@ contact.append(span,para)
     // if(index==2||index==5){
     //   div.remove(contact)
     // }
-    if (element.contact) {
+    if (element.phone) {
       div.append(contact);
   }
     
@@ -90,11 +93,11 @@ contact.append(span,para)
 
 // when focus on searchInput
 searchInput.addEventListener("focus", async function filterSuggestions() {
-  let data = await fetch("https://faux-api.com/api/v1/events_2862747661137939");
+  let data = await fetch("http://localhost:3000/events");
   let json = await data.json();
-  let op = json.result;
+  let op = json;
 
-  displaysuggestion(op.map((list) => list.By));
+  displaysuggestion(op.map((list) => list.organizer));
 });
 
 function displaysuggestion(list) {

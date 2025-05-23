@@ -164,7 +164,7 @@ if (searchInput) {
   });
 
   searchInput.addEventListener("focus", async function filterSuggestions() {
-    let data = await fetch("https://faux-api.com/api/v1/events_2862747661137939");
+    let data = await fetch("http://localhost:3000/events");
     let json = await data.json();
     let op = json.result;
 
@@ -275,7 +275,7 @@ if (event_1) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("https://events-management-voe0.onrender.com/events") // your backend endpoint
+  fetch(" http://localhost:3000/events") // your backend endpoint
     .then(response => response.json())
     .then(data => {
       const cardDataContainer = document.getElementById("card-data");
@@ -288,10 +288,10 @@ console.log(data)
     let imgWrapper = document.createElement("div");
     imgWrapper.classList.add("img-wrapper");
     imgWrapper.style.height="400px"
-    imgWrapper.style.marginTop="-50px"
+    
     let img = document.createElement("img");
     img.style.height="250px"
-    img.src = `https://events-management-voe0.onrender.com/events${item.photo}`;
+img.src = `http://localhost:3000${item.photo}`;
     img.alt = "Card Image";
     imgWrapper.appendChild(img);
     let cardBody = document.createElement("div");

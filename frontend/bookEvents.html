@@ -542,7 +542,7 @@ function renderPagination(totalEvents) {
       }
 
       const name = document.createElement("h3");
-      name.textContent = item.name;
+      name.textContent = item.organizer;
       name.style.color = "blue";
       name.style.textTransform = "uppercase";
       name.style.textAlign = "center";
@@ -562,7 +562,7 @@ function renderPagination(totalEvents) {
       const button = document.createElement("button");
       button.className = "btn btn-primary mt-2";
       button.textContent = "Book Event";
-      button.addEventListener("click", () => openModal(item.name));
+      button.addEventListener("click", () => openModal(item.organizer));
 
       card.append(name, date, location, description, button);
 

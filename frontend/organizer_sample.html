@@ -14,6 +14,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
 
+
   <style>
     body {
       padding-top: 56px;
@@ -162,6 +163,7 @@
   >
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
+
         <form id="event-form" enctype="multipart/form-data">
           <div class="modal-header">
             <h5 class="modal-title" id="eventModalLabel">Create Event</h5>
@@ -181,21 +183,21 @@
                 class="form-control"
                 id="organizer"
                 required
-                maxlength="100"
+                maxlength="100",
                 name="organizer"
               />
             </div>
-            <div class="mb-3">
+              <div class="mb-3">
               <label for="event-description" class="form-label">Description</label>
               <textarea
                 class="form-control"
                 id="description"
                 rows="3"
-                required
+                required ,
                 name="description"
               ></textarea>
-            </div>
-            <div class="mb-3">
+          </div>
+           <div class="mb-3">
               <label for="event-location" class="form-label">Location</label>
               <input
                 type="text"
@@ -203,7 +205,7 @@
                 id="event-location"
                 required
                 maxlength="150"
-                name="location"
+                name="event-location"
               />
             </div>
             <div class="mb-3">
@@ -216,39 +218,46 @@
                 name="date"
               />
             </div>
+              <div>
+            <label for="time" class="form-label">Time</label>
+             <input id="time" type="time" name="time" required />
+
+          </div>
+
+          <div>
+            <label for="phone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              placeholder="Enter your phone number"
+              required ,
+              name="phone" 
+            />
+
+          </div>
+            
             <div class="mb-3">
-              <label for="time" class="form-label">Time</label>
-              <input id="time" type="time" class="form-control" name="time" required />
-            </div>
-            <div class="mb-3">
-              <label for="phone" class="form-label">Phone Number</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="phone"
-                placeholder="Enter your phone number"
-                required
-                name="phone" 
-              />
-            </div>
-            <div class="mb-3">
-              <label for="status" class="form-label">Status</label>
-              <select class="form-select" name="status" id="status" required>
+              <label for="status" class="form-label" >Status</label>
+              <select class="form-select" name="status" id="status"  required>
                 <option value="Pending">Pending</option>
                 <option value="Approved">Approved</option>
                 <option value="Cancelled">Cancelled</option>
               </select>
-            </div>
-            <div class="mb-3">
-              <label for="photo" class="form-label">Event Image</label>
-              <input
-                type="file"
-                name="photo"
-                class="form-control"
-                id="photo"
-                accept="image/*"
-              />
-            </div>
+            </div> 
+          
+        
+          <div >
+            <label for="photo" class="form-label">Event Image</label>
+            <input
+              type="file"
+              name="photo"
+              class="form-control"
+              id="photo"
+                              accept="image/*"
+                              name="photo"
+
+            />  
           </div>
           <div class="modal-footer">
             <button
@@ -262,20 +271,32 @@
               Save Event
             </button>
           </div>
-        </form>
+        </form> 
+     <!-- <form id="eventForm"  enctype="multipart/form-data" >
+  <input type="text"  name="organizer" placeholder="Event Name" required />
+  <input type="text" name="description" placeholder="Description" required />
+  <input type="text" name="location" placeholder="Location" required />
+  <input type="date" name="date" required />
+  <input type="time" name="time" required />
+  <input type="tel" name="phone" placeholder="Phone Number" required />
+  <input type="file" name="photo" accept="image/*" required />
+  <button type="submit">Submit Event</button>
+</form> -->
+
       </div>
     </div>
   </div>
 
+
   <!-- Delete Confirmation Modal -->
-  <div
+ <div
     class="modal fade"
     id="deleteModal"
     tabindex="-1"
     aria-labelledby="deleteModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="deleteModalLabel">Delete Event</h5>
@@ -287,7 +308,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          Are you sure you want to delete the event "<span id="delete-event-name"></span>"?
+          Are you sure you want to delete the event <strong id="delete-event-name"></strong>?
         </div>
         <div class="modal-footer">
           <button
@@ -305,9 +326,26 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  ></script>
 
   <script>
+
     // Elements
     const totalEventsEl = document.getElementById('total-events');
     const upcomingEventsEl = document.getElementById('upcoming-events');
@@ -316,9 +354,13 @@
     const eventsTableBody = document.getElementById('events-table-body');
     const btnCreateEvent = document.getElementById('btn-create-event');
 
-    // Modals - Initialize immediately to ensure they're available
+    // Modals
     const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
-    const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+
+  const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+
+
+  
 
     // Form & fields
     const eventForm = document.getElementById('event-form');
@@ -335,63 +377,46 @@
     let events = [];
     let eventToDelete = null;
 
-    // Load events function
+    // Fetch stats and events
+    // async function loadStats() {
+    //   try {
+    //     const res = await fetch(`http://localhost:3000/stats`, {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         // Authorization: `Bearer ${token}`, // add auth header if needed
+    //       },
+    //     });
+    //     if (!res.ok) throw new Error('Failed to fetch stats');
+    //     const stats = await res.json();
+    //     totalEventsEl.textContent = stats.totalEvents || 0;
+    //     upcomingEventsEl.textContent = stats.upcomingEvents || 0;
+    //     totalAttendeesEl.textContent = stats.totalAttendees || 0;
+    //     pendingEventsEl.textContent = stats.pendingEvents || 0;
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+
     async function loadEvents() {
       try {
         const res = await fetch(`http://localhost:3000/events`, {
           headers: {
             'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`, // add auth header if needed
           },
         });
-        
         if (!res.ok) throw new Error('Failed to fetch events');
         events = await res.json();
         renderEventsTable();
-        updateDashboardStats(); // Update stats based on loaded events
       } catch (err) {
-        console.error('Error loading events:', err);
-        eventsTableBody.innerHTML = `
-          <tr>
-            <td colspan="5" class="text-center">Error loading events. Please try again later.</td>
-          </tr>
-        `;
+        console.error(err);
       }
-    }
-
-    // Update dashboard stats based on events
-    function updateDashboardStats() {
-      if (!events || !events.length) {
-        totalEventsEl.textContent = '0';
-        upcomingEventsEl.textContent = '0';
-        pendingEventsEl.textContent = '0';
-        totalAttendeesEl.textContent = '0';
-        return;
-      }
-
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
-      totalEventsEl.textContent = events.length;
-      
-      const upcoming = events.filter(event => {
-        const eventDate = new Date(event.date);
-        eventDate.setHours(0, 0, 0, 0);
-        return eventDate >= today;
-      }).length;
-      upcomingEventsEl.textContent = upcoming;
-      
-      const pending = events.filter(event => event.status === 'Pending').length;
-      pendingEventsEl.textContent = pending;
-      
-      // For total attendees, this would need real data - setting placeholder
-      totalAttendeesEl.textContent = '0';
     }
 
     // Render event rows
     function renderEventsTable() {
       eventsTableBody.innerHTML = '';
-      
-      if (!events || events.length === 0) {
+      if (events.length === 0) {
         eventsTableBody.innerHTML = `
           <tr>
             <td colspan="5" class="text-center">No events found.</td>
@@ -399,44 +424,37 @@
         `;
         return;
       }
-      
       events.forEach((event) => {
         const statusClass = getStatusClass(event.status);
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>${escapeHtml(event.organizer)}</td>
           <td>${escapeHtml(event.date)}</td>
-          <td>${escapeHtml(event.location || '')}</td>
+          <td>${escapeHtml(event.location)}</td>
           <td><span class="badge ${statusClass}">${escapeHtml(event.status)}</span></td>
+          
           <td>
-            <button class="btn btn-sm btn-primary btn-edit" data-id="${event.id}">Edit</button>
-            <button class="btn btn-sm btn-danger btn-delete" data-id="${event.id}">Delete</button>
+            <button class="btn btn-sm btn-primary btn-edit" data-id="${event.id}" >Edit</button>
+            <button class="btn btn-sm btn-danger btn-delete" data-id="${event.id}" >Delete</button>
           </td>
         `;
         eventsTableBody.appendChild(tr);
-      });
+      }); 
 
-      // Add event listeners after rendering the table
-      addEventHandlers();
-    }
-
-    // Add event handlers to buttons
-    function addEventHandlers() {
-      // Add event listeners for edit buttons
-      document.querySelectorAll('.btn-edit').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          const id = this.getAttribute('data-id');
+      // Attach event listeners for buttons
+      document.querySelectorAll('.btn-edit').forEach((btn) =>
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
           openEditEventModal(id);
-        });
-      });
+        })
+      );
 
-      // Add event listeners for delete buttons
-      document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          const id = this.getAttribute('data-id');
+      document.querySelectorAll('.btn-delete').forEach((btn) =>
+        btn.addEventListener('click', (e) => {
+          const id = e.target.dataset.id;
           openDeleteModal(id);
-        });
-      });
+        })
+      );
     }
 
     function getStatusClass(status) {
@@ -453,153 +471,191 @@
     }
 
     // Escape HTML helper to avoid XSS
-    function escapeHtml(text) {
-      if (text == null || typeof text !== 'string') {
-        return '';
-      }
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
+  function escapeHtml(text) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+  return text.replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
+}
 
     // Open Create Event modal
     btnCreateEvent.addEventListener('click', () => {
-      clearEventForm();
-      document.getElementById('eventModalLabel').textContent = 'Create Event';
-      document.getElementById('save-event-btn').textContent = 'Save Event';
+      // clearEventForm();
       eventModal.show();
     });
 
     // Clear and reset form
-    function clearEventForm() {
-      eventForm.reset();
-      idInput.value = '';
-    }
+    // function clearEventForm() {
+    //   eventIdInput.value = '';
+    //   eventNameInput.value = '';
+    //   eventDateInput.value = '';
+    //   eventLocationInput.value = '';
+    //   eventStatusSelect.value = 'Pending';
+    //   eventDescript.value = '';
+    //   phoneInput.value = '';
+
+    //   document.getElementById('eventModalLabel').textContent = 'Create Event';
+    //   document.getElementById('save-event-btn').textContent = 'Save Event';
+    // }
+
+
+
+    
+
+
+
 
     // Open Edit modal with event data filled
     function openEditEventModal(id) {
-      const event = events.find(ev => ev.id === id);
-      if (!event) {
-        alert('Event not found');
-        return;
-      }
 
+      const event = events.find((ev) => ev.id === id);
+      if (!event) return alert('Event not found');
       idInput.value = event.id;
-      organizer.value = event.organizer || '';
-      eventdate.value = event.date || '';
-      time.value = event.time || '';
-      eventlocation.value = event.location || '';
-      status.value = event.status || 'Pending';
-      description.value = event.description || '';
-      phone.value = event.phone || '';
+      organizer.value = event.organizer;
+      eventdate.value = event.date;
+      time.value=event.time
       
-      // Don't set photo value as browser security prevents this
-      // Just display a message that they can upload a new image
-      const photoLabel = document.querySelector('label[for="photo"]');
-      photoLabel.textContent = 'Event Image (Upload new image to replace current one)';
+      eventlocation.value = event.location;
+      status.value = event.status;
+      description.value = event.description;
+      phone.value = event.phone;
+      // photo.value= photo.files[0]
+       const   pht= `http://localhost:3000${event.photo}`;
+       const   updatedphoto = pht
+photo.fields=    updatedphoto
+   console.log(updatedphoto)
       
+      // Set the modal title and button text
       document.getElementById('eventModalLabel').textContent = 'Edit Event';
       document.getElementById('save-event-btn').textContent = 'Update Event';
       eventModal.show();
     }
 
-    // Event form submission handler
+
+//     eventForm.addEventListener("submit", async function (e) {
+//   e.preventDefault();
+
+//   const form = e.target;
+//   const formData = new FormData(form);
+
+//   try {
+//     const res = await fetch("http://localhost:3000/events", {
+//       method: "POST",
+//       body: formData,
+//     });
+
+//     if (!res.ok) {
+//       const error = await res.json();
+//       throw new Error(error.message || "Failed to upload event");
+//     }
+
+//     const result = await res.json();
+//     console.log(result);
+//     alert("Upload success: " + (result.message || "Event uploaded successfully"));
+//   } catch (err) {
+//     console.error("Upload failed", err);
+//     alert("Upload failed: " + err.message);
+//   }
+// });
+
+
     eventForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  e.preventDefault();
 
-      const id = idInput.value;
-      const formData = new FormData();
+  const id = idInput.value;
+  const formData = new FormData();
 
-      formData.append('organizer', organizer.value.trim());
-      formData.append('date', eventdate.value);
-      formData.append('location', eventlocation.value.trim());
-      formData.append('time', time.value);
-      formData.append('status', status.value);
-      formData.append('description', description.value.trim());
-      formData.append('phone', phone.value.trim());
+  formData.append('organizer', organizer.value.trim());
+  formData.append('date', eventdate.value);
+  formData.append('location', eventlocation.value.trim());
+  formData.append('time', time.value);
 
-      if (photo.files.length > 0) {
-        formData.append('photo', photo.files[0]);
-      }
+  formData.append('status', status.value);
+  formData.append('description', description.value.trim());
+  formData.append('phone', phone.value.trim());
 
-      try {
-        let res;
-        if (id) {
-          // Update existing event
-          res = await fetch(`http://localhost:3000/events/${id}`, {
-            method: 'PUT',
-            body: formData,
-          });
-        } else {
-          // Create new event
-          res = await fetch(`http://localhost:3000/events`, {
-            method: 'POST',
-            body: formData,
-          });
-        }
+  if (photo.files.length > 0) {
+    formData.append('photo', photo.files[0]); // Assuming single file
+  }
 
-        if (!res.ok) {
-          const errorData = await res.json().catch(() => ({}));
-          throw new Error(errorData.message || 'Failed to save event');
-        }
-
-        // Success: reload events and close modal
-        eventModal.hide();
-        await loadEvents();
-      } catch (error) {
-        alert(`Error: ${error.message}`);
-        console.error('Form submission error:', error);
-      }
-    });
-
-    // Open Delete modal with event data
-    function openDeleteModal(id) {
-      const event = events.find(ev => ev.id === id);
-      if (!event) {
-        alert('Event not found');
-        return;
-      }
-      
-      eventToDelete = event;
-      document.getElementById('delete-event-name').textContent = event.organizer || 'this event';
-      deleteModal.show();
+  try {
+    let res;
+    if (id) {
+      // Update existing event
+      res = await fetch(`http://localhost:3000/events/${id}`, {
+        method: 'PUT',
+        // Do NOT set Content-Type here when sending FormData
+        body: formData,
+      });
+      if (!res.ok) throw new Error('Failed to update event');
+    } else {
+      // Create new event
+      res = await fetch(`http://localhost:3000/events`, {
+        method: 'POST',
+        body: formData,
+      });
+      if (!res.ok) throw new Error('Failed to create event');
     }
+    // Success: reload events and close modal
+    await loadEvents();
+    eventModal.hide();
+  } catch (error) {
+    alert(error.message);
+    console.error(error);
+  }
+});
+   
+    const deleteEventNameEl = document.getElementById('delete-event-name');
+    const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
 
-    // Handle delete confirmation
-    document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
-      if (!eventToDelete || !eventToDelete.id) {
-        alert('No event selected for deletion');
-        return;
-      }
-      
+    function openDeleteModal(id) {
+
+      const event = events.find((ev) => ev.id === id);
+      if (!event) return alert('Event not found');
+      eventToDelete = event;
+      deleteEventNameEl.textContent = event.name;
+                  deleteModal.show();
+
+                  
+
+    }
+  
+
+    confirmDeleteBtn.addEventListener('click', async () => {
+      if (!eventToDelete) return;
       try {
         const res = await fetch(`http://localhost:3000/events/${eventToDelete.id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`,
           },
         });
-        
-        if (!res.ok) {
-          const errorData = await res.json().catch(() => ({}));
-          throw new Error(errorData.message || 'Failed to delete event');
-        }
-        
+        if (!res.ok) throw new Error('Failed to delete event');
         deleteModal.hide();
-        await loadEvents();
+        // await loadStats();
+        // await loadEvents();
       } catch (err) {
-        alert(`Error: ${err.message}`);
-        console.error('Delete error:', err);
+        alert(err.message);
       }
     });
 
-    // Initialize page
+    // Initial load
+    // loadStats();
     window.addEventListener('DOMContentLoaded', () => {
-      loadEvents();
-    });
+  loadEvents();
+  // loadStats();  // Uncomment if you implement the stats API
+});
+
+    // loadEvents();
   </script>
 </body>
+
 </html>
+
+
+

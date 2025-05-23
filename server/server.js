@@ -739,7 +739,7 @@
 
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
+const path = require("path");   
 const formidable = require("formidable");
 const cors = require("cors");
 
@@ -791,13 +791,13 @@ app.post("/events", (req, res) => {
     // const imageFile = fields.photo || files.file; // change this to your actual input field name
 
     const file = files.photo;
+    console.log(file[0].filepath)
 
   let imageUrl = "";
-    if (file && file.filepath) {
-      imageUrl = `/uploads/${path.basename(file.filepath)}`;
+    if (file && file[0].filepath) {
+      imageUrl = `/uploads/${path.basename(file[0].filepath)}`;
     }
 
-    console.log("Files received:", fields);
 
     const newEvent = {
       id: Date.now().toString(),
@@ -852,8 +852,8 @@ app.put("/events/:id", (req, res) => {
     event.phone = phone?.[0] || event.phone;
     event.status = status?.[0] || event.status;
 
-    if (file && file.filepath) {
-      event.photo = `/uploads/${path.basename(file.filepath)}`;
+    if (file && file[0].filepath) {
+      event.photo = `/uploads/${path.basename(file[0].filepath)}`;
     }
 events[index]=event
 
@@ -865,17 +865,28 @@ events[index]=event
 });
 
 
-app.delete("/api/events/:id", (req, res) => {
+app.delete("/events/:id", (req, res) => {
   const events = readEvents();
-  const updatedEvents = events.filter((event) => event.id !== req.params.id);
 
-  if (events.length === updatedEvents.length) {
-    return res.status(404).json({ error: "Event not found" });
+
+  const id = req.params.id;
+  const index = events.findIndex((event) =>
+    event.id === id
+  );
+
+
+
+if (index === -1) {
+  return res.status(404).json({ error: "Event not found" });
   }
+  const updatedEvents = events.filter((event) =>
+    event.id !== id);
 
   writeEvents(updatedEvents);
-  res.json({ message: "Event deleted" });
-});
+  res.status(200).json({ message: "Event deleted successfully" });
+  });
+
+
 
 app.post("/register", (req, res) => {
   const { name, email, password,role } = req.body;

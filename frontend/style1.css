@@ -36,10 +36,11 @@ label {
 }
 
 .searchcd:hover {
-  height: 610px;
+  height: 570px;
   box-shadow: 2px 2px 12px 4px blue;
   margin-top: -2px;
-  background-color: gold;
+  background-color: rgb(250, 159, 126);
+  
 }
 .homebtn {
   padding: 12px;
