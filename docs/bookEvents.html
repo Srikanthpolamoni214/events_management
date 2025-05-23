@@ -62,23 +62,25 @@
       display: none;
     }
     .event-card {
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+      margin-bottom: 30px;
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.6s ease;
+      transition: all 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 300px;
-      border: 1px solid #ddd;
+      max-width: 340px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f0f4ff, #d9e4ff);
     }
     .event-card.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     .event-description {
       border: 1px solid #ccc;
