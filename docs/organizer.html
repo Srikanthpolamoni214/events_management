@@ -338,7 +338,7 @@
     // Load events function
     async function loadEvents() {
       try {
-        const res = await fetch(`http://localhost:3000/events`, {
+        const res = await fetch(`https://events-management-1.onrender.com/events`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -529,13 +529,13 @@
         let res;
         if (id) {
           // Update existing event
-          res = await fetch(`http://localhost:3000/events/${id}`, {
+          res = await fetch(`https://events-management-1.onrender.com/events/${id}`, {
             method: 'PUT',
             body: formData,
           });
         } else {
           // Create new event
-          res = await fetch(`http://localhost:3000/events`, {
+          res = await fetch(`https://events-management-1.onrender.com/events`, {
             method: 'POST',
             body: formData,
           });
@@ -576,7 +576,7 @@
       }
       
       try {
-        const res = await fetch(`http://localhost:3000/events/${eventToDelete.id}`, {
+        const res = await fetch(`https://events-management-1.onrender.com/events/${eventToDelete.id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
