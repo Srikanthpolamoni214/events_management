@@ -10,7 +10,7 @@ login.addEventListener("submit",function(e){
     signInWithEmailAndPassword(auth, mail, psd)
     .then((x)=>{
         if(x.user.accessToken){
-            fetch("http://localhost:3000")
+            fetch("https://events-management-1.onrender.com")
             .then(response =>
                 {
                     if(response.ok){

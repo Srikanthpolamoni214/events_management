@@ -164,7 +164,7 @@ if (searchInput) {
   });
 
   searchInput.addEventListener("focus", async function filterSuggestions() {
-    let data = await fetch("http://localhost:3000/events");
+    let data = await fetch("https://events-management-1.onrender.com/events");
     let json = await data.json();
     let op = json.result;
 
@@ -275,7 +275,7 @@ if (event_1) {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch(" http://localhost:3000/events") // your backend endpoint
+  fetch("https://events-management-1.onrender.com/events") // your backend endpoint
     .then(response => response.json())
     .then(data => {
       const cardDataContainer = document.getElementById("card-data");
@@ -291,7 +291,7 @@ console.log(data)
     
     let img = document.createElement("img");
     img.style.height="250px"
-img.src = `http://localhost:3000${item.photo}`;
+img.src = `https://events-management-1.onrender.com${item.photo}`;
     img.alt = "Card Image";
     imgWrapper.appendChild(img);
     let cardBody = document.createElement("div");
