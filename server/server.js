@@ -746,7 +746,6 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const app = express();
 const PORT = 3000;
-app.use(express.json());
 
 
 const EVENTS_FILE = path.join(__dirname, "events.json");
@@ -760,6 +759,8 @@ if (!fs.existsSync(EVENTS_FILE)) fs.writeFileSync(EVENTS_FILE, "[]");
 
 // Middleware
 app.use(cors());
+app.use(express.json());
+
 app.use("/uploads", express.static(UPLOAD_DIR));
 
 // Helper to read/write events
