@@ -890,10 +890,19 @@ if (index === -1) {
 
 app.post("/register", (req, res) => {
   const { name, email, password,role } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 10);
+    const users = readRegister();
+    const existingUser = users.find((user) =>
+      user.email === email
+    );
+    if (existingUser) {
+      return res.json({ message: "Email already exists" });
+      }
+
+
+
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
   const user = { name, email, password: hashedPassword,role };
-  const users = readRegister();
   users.push(user);
   writeRegister(users);
   console.log(user)
