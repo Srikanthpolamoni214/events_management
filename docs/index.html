@@ -21,50 +21,64 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top " style="background-color: orangered;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">eventbrite</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <div class="d-flex">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+  <div class="container-fluid">
+    <!-- Brand/Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+   
+      <strong class="navtitle"  >EventBrite</strong>
+    </a>
 
-                 
-            
-                <div id="results"></div>
-                    <!-- <input id="searchInput" class="form-control me-2" type="search" placeholder="Search events" aria-label="Search"> -->
-                    <div id="searchContainer">
-                      <input class="form-control me-2"  style="width: 200px;" type="search" id="searchInputs" placeholder="Search..." autocomplete="off">
-                      <div id="suggestionbox"></div>
-                  </div>
-                    <input id="locationInput" class="form-control me-2" type="search" placeholder="Search by location" aria-label="Location">
-                    <!-- <button class="btn btn-outline-success" type="button" onclick="searchEvents()">Search</button> -->
-                </div>
-                <a class="nav-link active"  aria-current="page" href="./index.html">Home</a>
+    <!-- Toggler for Mobile View -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-              <a class="nav-link active"  aria-current="page" href="#">Find Events</a>
-              <a class="nav-link active" href="#">Create Events</a>
-              <a class="nav-link active" href="#">Help Center</a>
-              <a class="nav-link active" id="organizer" href="./organizer.html">Oganize</a>
-              <a class="nav-link active" href="#about">Contact Us</a>
-              <a class="nav-link active" href="./login.html">Log In</a>
-              <a class="nav-link active" href="./register.html">Sign Up</a>
-              <a class="nav-link disabled" href="./index.html" aria-disabled="true"></a>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Find Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Create Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help Center</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./organizer.html">Organize</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./login.html">Log In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./register.html">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
-      <div class="homebtn mt-5">
+   <div class="container text-center my-4">
+  <div class="homebtn "  style="margin-top: -35px;" >
+      
         <button id="event_1" onclick="eventpage()">Events</button>
         <button id="event_2">Sports</button>
         
         <button id="event_3">Activities</button>
       
-      </div>
+      
+  </div>
+  </div>
 
       <div id="placecd"></div>
 
