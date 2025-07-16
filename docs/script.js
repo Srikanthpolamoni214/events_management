@@ -92,7 +92,7 @@ signUp.addEventListener("submit", function (e) {
       if (x.user) {
         // Store extra user data in backend
         
-        return fetch("https://events-management-voe0.onrender.com/register", {
+        return fetch("http://localhost:3000/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

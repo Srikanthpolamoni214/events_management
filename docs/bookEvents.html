@@ -502,7 +502,7 @@ function renderPagination(totalEvents) {
     loader.style.display = "block";
 
     try {
-      const res = await fetch("https://events-management-voe0.onrender.com/events");
+      const res = await fetch("http://localhost:3000/events");
       const data = await res.json();
       allEvents = data;
       displayEvents(allEvents);
@@ -627,7 +627,7 @@ bookEvent.addEventListener("submit", async(e) => {
     
     // Send the data to the server
     try{
-    let res = await fetch("https://events-management-voe0.onrender.com/bookevent", {
+    let res = await fetch("http://localhost:3000/bookevents", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -635,7 +635,7 @@ bookEvent.addEventListener("submit", async(e) => {
         body: JSON.stringify(eventData)
     });
     let data = await res.json();
-    console.log(data);
+    console.log("data", data);
     if (data) {
         alert("Event booked successfully");
         bookEvent.reset();
@@ -653,6 +653,7 @@ bookEvent.addEventListener("submit", async(e) => {
     bookEvent.reset();
     const myModal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
     myModal.hide();
+    exportCvs()
   } else {
     showToast(data.message || "Failed to book event.", "error");
   }
@@ -668,6 +669,10 @@ bookEvent.addEventListener("submit", async(e) => {
     // Hide the modal
     
 //export cvs
+const exportCvs = async () => {
+  try {
+
+setTimeout(() => {
     const csvData = [
       ["Name", "Phone", "Email", "Address"],
       [name, phone, email, address]
@@ -685,11 +690,19 @@ bookEvent.addEventListener("submit", async(e) => {
     // Show success message
 
 
+}, 2000);
+} catch (err) {
+  console.error(err);
+}
+
+  
 
 
 
 
 
+
+}
 })
 
   // Initial fetch

@@ -16,7 +16,7 @@ searchInput.addEventListener("keypress", function (event) {
 
 
 async function results() {
-  let data = await fetch("https://events-management-1.onrender.com/events");
+  let data = await fetch("http://localhost:3000/events");
   let json = await data.json();
   console.log(json)
   let op = json;
@@ -45,7 +45,7 @@ function displaycd(cd) {
     
 
     let photo = document.createElement("img");
-    photo.setAttribute("src", `https://events-management-1.onrender.com${element.photo}`);
+    photo.setAttribute("src", `http://localhost:3000${element.photo}`);
     console.log(element.photo)
     
     photo.classList.add("photo")
@@ -93,7 +93,7 @@ contact.append(span,para)
 
 // when focus on searchInput
 searchInput.addEventListener("focus", async function filterSuggestions() {
-  let data = await fetch("https://events-management-1.onrender.com/events");
+  let data = await fetch("http://localhost:3000/events");
   let json = await data.json();
   let op = json;
 

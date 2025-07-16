@@ -757,6 +757,7 @@ const data_FILE = path.join(__dirname, "data.json");
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR);
 if (!fs.existsSync(EVENTS_FILE)) fs.writeFileSync(EVENTS_FILE, "[]");
 
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -765,16 +766,53 @@ app.use("/uploads", express.static(UPLOAD_DIR));
 
 // Helper to read/write events
 const readEvents = () => JSON.parse(fs.readFileSync(EVENTS_FILE));
+const readbookedEvents = () => JSON.parse(fs.readFileSync(BOOKINGS_FILE));
 const writeEvents = (events) =>
   fs.writeFileSync(EVENTS_FILE, JSON.stringify(events, null, 2));
 const readRegister = () => JSON.parse(fs.readFileSync(data_FILE));
 const writeRegister = (register) =>
   fs.writeFileSync(data_FILE, JSON.stringify(register, null, 2));
 // GET all events
+
+const writebookedEvents = (bookedEvents) =>
+  fs.writeFileSync(BOOKINGS_FILE, JSON.stringify(bookedEvents, null, 2));
+
 app.get("/events", (req, res) => {
   const events = readEvents();
   res.json(events);
 });
+
+
+app.post("/bookevents",
+  (req, res) => {
+     const { name,
+        phone,
+        email,
+        address}
+= req.body;
+
+
+if (!name || !phone || !email || !address) {
+  return res.status(400).json({ message: "Please fill in all fields" });  
+  } else {
+    const events = readbookedEvents();
+    const newEvent = {
+    name,
+    phone,
+    email,
+    address
+    };
+    console.log(newEvent)
+    events.push(newEvent);
+    writebookedEvents(events);
+    res.json({ message: "Event booked successfully" });
+
+
+
+
+
+
+    }} )
 
 app.post("/events", (req, res) => {
   const form = new formidable.IncomingForm({
